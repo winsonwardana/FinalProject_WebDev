@@ -33,7 +33,7 @@ class UserController extends Controller
         //     -> get();
     $posts = Http::withHeaders([
         'Accept' => 'application/json',
-    ])->get('http://127.0.0.1:8000/api/welcome');
+    ])->get(env('API_URL','35.240.231.119').'/api/welcome');
     $data = json_decode($posts->body(), true);    
     // dump($data);
     return view ("welcome", compact('data'));
@@ -55,7 +55,7 @@ class UserController extends Controller
             'Accept' => 'application/json',
             
 
-        ])->post('http://127.0.0.1:8000/api/login', [
+        ])->post(env('API_URL2','35.240.231.119').'/api/login', [
             "email" => $email,
             "password" => $password,
             
@@ -70,7 +70,7 @@ class UserController extends Controller
             //     -> join('details','details.detail_id','=','users.detail_id')
             //     ->where('details.detail_id',$detail_id)
             //     -> get();
-            //     foreach ($data as $dat) {
+                 foreach ($data as $dat) {
                     
                     Session::put('first_name',$user['first_name']);
                     Session::put('user_id',$user['user_id']);
@@ -79,7 +79,7 @@ class UserController extends Controller
             
         }
 
-    
+        }
     }
 
     public function store(Request $request)
@@ -92,7 +92,7 @@ class UserController extends Controller
             'Accept' => 'application/json',
             
 
-        ])->post('http://127.0.0.1:8000/api/signup', [
+        ])->post(env('API_URL2','35.240.231.119').'/api/signup', [
             "first_name"=>$first_name,
 
             "email" => $email,
@@ -120,21 +120,21 @@ class UserController extends Controller
     {
         // $posts = Http::withHeaders([
         //     'Accept' => 'application/json',
-        // ])->get('http://127.0.0.1:8000/api/detail');
+        // ])->get('/api/detail');
         // $data = json_decode($posts->body(), true);    
         // // dump($data);
         // return view ("welcome", compact('data'));
 
         // $comments = Http::withHeaders([
         //     'Accept' => 'application/json',
-        // ])->get('http://127.0.0.1:8000/api/detail');
+        // ])->get('/api/detail');
         // $comments = json_decode($comments->body(), true);    
         // dump($data);
 
         $response1 = Http::withHeaders([
             'Accept' => 'application/json',
         
-        ])->get('http://127.0.0.1:8000/api/detailID', [
+        ])->get(env('API_URL','35.240.231.119').'/api/detailID', [
             "id" => $id
             
         ]);
@@ -144,7 +144,7 @@ class UserController extends Controller
         $response2 = Http::withHeaders([
             'Accept' => 'application/json',
         
-        ])->get('http://127.0.0.1:8000/api/detailComment', [
+        ])->get(env('API_URL','35.240.231.119').'/api/detailComment', [
             "id" => $id
             
         ]);
@@ -176,7 +176,7 @@ class UserController extends Controller
             'Accept' => 'application/json',
             
 
-        ])->post('http://127.0.0.1:8000/api/comment', [
+        ])->post(env('API_URL','35.240.231.119').'/api/comment', [
             'user_id' =>$request->session()->get('user_id'),
             'post_id'=> $id,
             'comment' =>  $request->input('comment')

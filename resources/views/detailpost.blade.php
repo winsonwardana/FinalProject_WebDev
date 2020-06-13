@@ -62,7 +62,7 @@
 		@foreach($comments	 as $comments	)
 		<?php
         
-				$std = Http::get('http://127.0.0.1:8002/api/getUserDetail/'.$comments['user_id'])[0]
+				$std = Http::get(env('API_UR2L','35.240.231.119').'http://127.0.0.1:8002/api/getUserDetail/'.$comments['user_id'])[0]
             ?>
 		<div class="row pb-2 m-0">
 			<div class="col-md-3">

@@ -32,7 +32,7 @@ class AdminController extends Controller
 
         $posts = Http::withHeaders([
             'Accept' => 'application/json',
-        ])->get('http://127.0.0.1:8000/api/loadPost');
+        ])->get(env('API_URL','35.240.231.119').'/api/loadPost');
         $data = json_decode($posts->body(), true);
         // dump($data);
         return view ("dashboardpost", compact('data'));
@@ -52,7 +52,7 @@ class AdminController extends Controller
             'Accept' => 'application/json',
             
 
-        ])->post('http://127.0.0.1:8000/api/admin', [
+        ])->post(env('API_URL2','35.240.231.119').'/api/admin', [
             "username" => $username,
             "password" => $password,
             
@@ -68,8 +68,6 @@ class AdminController extends Controller
             
         }
 
-    
-    
 
         
         // $admin = Admin::all()->where('username',  $username)->where('password',$password);
@@ -93,7 +91,7 @@ class AdminController extends Controller
     {
         $counts = Http::withHeaders([
             'Accept' => 'application/json',
-        ])->get('http://localhost:8000/api/getAllPost');
+        ])->get(env('API_URL','35.240.231.119').'/api/getAllPost');
         $test = json_decode($counts->body(),true);
         $count = $test['message'];
         // $user = json_decode($count->body(), true);
@@ -105,7 +103,7 @@ class AdminController extends Controller
         }
         else{
             // $post_id = DB::table('posts')->get()->last()->post_id;
-            $post_id = Http::get('http://localhost:8000/api/getLastID'); 
+            $post_id = Http::get(env('API_URL','35.240.231.119').'http://localhost:8000/api/getLastID'); 
 
             $post_id += 1;
         }
@@ -118,7 +116,7 @@ class AdminController extends Controller
 
         $response = Http::withHeaders([
             'Accept' => 'application/json',
-        ])->post('http://127.0.0.1:8000/api/createPost',[
+        ])->post(env('API_URL','35.240.231.119').'/api/createPost',[
             "img_url" => $dp_url,
             "title" =>$request->input('title'),
             "description" => $request->input('description')
@@ -151,7 +149,7 @@ class AdminController extends Controller
         // ->delete();
         $delete = Http::withHeaders([
             'Accept' => 'application/json',
-        ])->delete('http://127.0.0.1:8000/api/delete/'.$id);
+        ])->delete(env('API_URL','35.240.231.119').'/api/delete/'.$id);
         
         return Redirect::to("/dashboard-post");
 
@@ -166,11 +164,16 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = DB::table('posts')
-        ->where('post_id',$id)
-        -> get();
+        $posts = Http::withHeaders([
+            'Accept' => 'application/json',
+        ])->get(env('API_URL','35.240.231.119').'/api/update/{id}');
+        $data = json_decode($posts->body(), true);
+        
+        // $data = DB::table('posts')
+        // ->where('post_id',$id)
+        // -> get();
 
-        return view('dashboardupdate', compact('data'));
+         return view('dashboardupdate', compact('data'));
     }
     public function executeUpdate(Request $request, $id){
         
@@ -179,7 +182,7 @@ class AdminController extends Controller
             if($image == ""){
                 $response = Http::withHeaders([
                     'Accept' => 'application/json',
-                ])->get('http://127.0.0.1:8000/api/getImgUrl/'.$id);
+                ])->get(env('API_URL','35.240.231.119').'/api/getImgUrl/'.$id);
                 $post = json_decode($response->body(),true);
 
                 foreach ($post as $data) {
@@ -197,7 +200,7 @@ class AdminController extends Controller
             }
             $response = Http::withHeaders([
                 'Accept' => 'application/json',
-            ])->patch('http://127.0.0.1:8000/api/updatePost/'.$id,[
+            ])->patch(env('API_URL','35.240.231.119').'/api/updatePost/'.$id,[
                 "img_url" => $dp_url,
                 "title" =>$request->input('title'),
                 "description" => $request->input('description')
