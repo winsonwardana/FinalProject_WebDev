@@ -25,16 +25,7 @@
 					<label for="password">Password</label>
 					<input type="password" class="form-control" name="password" id="password" placeholder="">
 				</div>
-				<div class="form-group">
-					<label for="city">City</label>
-					<select class="form-control" id="city">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
-					</select>
-				</div>
+		
 				<button type="submit" class="btn btn-primary" style="text-align:center">Join us Now</button>
 			</form>
 			<p>Have an account? <span style="color:blue"> <a href="login">Log in</a></span></p>

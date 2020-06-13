@@ -1,44 +1,42 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@extends('layout/headerselainhome')
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-    <title>Admin page</title>
-  </head>
-  <body>
-	<nav class="navbar navbar-expand-lg" style="background-color:black">
-	<img src="assets/logo.png" alt="" style="width:15%" class="pr-5">
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="navbar-nav">
-		<li class="nav-item active">
-			<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="#">Features</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="#">Pricing</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-		</li>
-		</ul>
+@section('container')
+<div class="container" style="padding-top:10%">
+	<div class="row m-0">
+		<div class="col-md-3 pt-5" >
+			<h1 style="color:white">Admin Login</h1>
+			
+		</div>
+		<div class="col-md-6" >
+			<div style="background-color:#0C0000;padding:40px;border-radius:20px">
+            {{ Form::open(array('action' => 'AdminController@login')) }}
+    @csrf
+			<div style="text-align:center">
+				<img src="assets/logo.png" alt="" style="width:70%">
+			</div>
+			
+			<div class="form-group pt-5">
+				<label for="username" style="color:white">Username</label>
+				<input type="username" class="form-control" id="username" name="username" >
+			</div>
+			<div class="form-group" style="color:white">
+				<label for="password">Password</label>
+				<input type="password" class="form-control" id="password" name="password">
+			</div>
+			<div style="text-align:center">
+			<button type="submit" class="btn btn-primary">Log in</button>
+			</div>
+			
+			</form>
+			</div>
+		</div>
+			<div class="col-md-3 pt-5">
+				<h1 style="color:white">Welcome back</h1>
+				
+			</div>
 	</div>
-	</nav>
-    
+			
+</div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-  </body>
-</html>
+		
+@endsection

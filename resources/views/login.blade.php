@@ -26,6 +26,7 @@
 			<div style="text-align:center">
 			<button type="submit" class="btn btn-primary">Log in</button>
 			</div>
+			<p style="color:white">Dont have a Account? <span><a href="signup">Sign up</a></span> </p>
 			
 			</form>
 			</div>
